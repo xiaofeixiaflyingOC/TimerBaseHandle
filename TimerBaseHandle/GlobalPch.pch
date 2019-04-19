@@ -1,0 +1,30 @@
+//
+//  GlobalPch.pch
+//  TimerBaseHandle
+//
+//  Created by shengxin on 2019/4/16.
+//  Copyright © 2019 shengxin. All rights reserved.
+//
+
+#ifndef GlobalPch_pch
+#define GlobalPch_pch
+#import <Foundation/Foundation.h>
+#import <os/log.h>
+/** 打印日志 */
+#define LOG_LEVEL_DEF ddLogLevel
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
+#ifdef DEBUG
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
+//#define NSLog(FORMAT, ...) LOG_MAYBE(LOG_ASYNC_ENABLED, LOG_LEVEL_DEF, DDLogFlagVerbose, 0, nil, __PRETTY_FUNCTION__, FORMAT, ##__VA_ARGS__)
+#else
+static const DDLogLevel ddLogLevel = DDLogLevelWarning;
+
+#define NSLog(FORMAT, ...) LOG_MAYBE(LOG_ASYNC_ENABLED, LOG_LEVEL_DEF, DDLogFlagWarning|DDLogFlagError, 0, nil, __PRETTY_FUNCTION__, FORMAT, ##__VA_ARGS__)
+
+#endif  /* DEBUG */
+
+
+
+
+#endif /* GlobalPch_pch */
